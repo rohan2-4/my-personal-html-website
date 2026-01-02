@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Website</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        /* Custom CSS with Background Image */
+        body {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)), 
+                            url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        /* Alternative background image options (choose one by changing the URL above):
+           1. Tech background: https://images.unsplash.com/photo-1451187580459-43490279c0fa (current)
+           2. Geometric pattern: https://images.unsplash.com/photo-1551288049-bebda4e38f71
+           3. Minimal blue: https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d
+           4. Dark tech: https://images.unsplash.com/photo-1518709268805-4e9042af2176
+        */
+        
+        .profile-img {
+            width: 220px;
+            height: 220px;
+            object-fit: cover;
+            border: 6px solid white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .profile-img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+        }
+        
+        .section-title {
+            border-bottom: 3px solid #0d6efd;
+            padding-bottom: 12px;
+            margin-bottom: 35px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: #ff6b35;
+        }
+        
+        .table th {
+            background-color: rgba(13, 110, 253, 0.1);
+            color: #0d6efd;
+            font-weight: 600;
+        }
+        
+        .table-hover tbody tr:hover {
+            background-color: rgba(13, 110, 253, 0.05);
+            transform: translateY(-2px);
+            transition: all 0.2s ease;
+        }
+        
+        /* Enhanced Card Styling */
+        .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.95);
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        /* Navigation Bar Enhancement */
+        .navbar {
+            background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+            box-shadow: 0 4px 15px rgba(13, 110, 253, 0.3);
+            padding: 15px 0;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            margin: 0 5px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        /* Section Styling */
+        section {
+            border-radius: 15px;
+            margin-bottom: 40px;
+            padding: 50px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #home {
+            background: linear-gradient(135deg, rgba(248, 249, 250, 0.95) 0%, rgba(233, 236, 239, 0.95) 100%);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        #education, #contact {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        
+        #skills {
+            background: linear-gradient(135deg, rgba(248, 249, 250, 0.95) 0%, rgba(233, 236, 239, 0.95) 100%);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        
+        /* Button Enhancement */
+        .btn-primary {
+            background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+            border: none;
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(13, 110, 253, 0.4);
+        }
+        
+        .btn-outline-primary {
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Badge Styling */
+        .badge {
+            padding: 8px 12px;
+            font-weight: 500;
+        }
+        
+        /* List Group Enhancement */
+        .list-group-item {
+            border: none;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            padding: 15px 20px;
+            transition: all 0.2s ease;
+        }
+        
+        .list-group-item:hover {
+            background-color: rgba(13, 110, 253, 0.05);
+            padding-left: 25px;
+        }
+        
+        /* Footer Enhancement */
+        footer {
+            background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+            box-shadow: 0 -5px 20px rgba(13, 110, 253, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b35, #0d6efd);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .profile-img {
+                width: 180px;
+                height: 180px;
+            }
+            
+            section {
+                padding: 30px 15px;
+                border-radius: 10px;
+            }
+            
+            .display-4 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        /* Animation for sections */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        section {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #0a58ca 0%, #084298 100%);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-person-circle me-2"></i>Rohan's Portfolio
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#education">Education</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="p-5 text-center">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <!-- Profile Photo -->
+                    <img src="image.jpeg" 
+                         alt="Profile Photo" class="profile-img rounded-circle">
+                </div>
+                <div class="col-md-8">
+                    <h1 class="display-4 mb-3">Rohan Gadade</h1>
+                    <h4 class="mb-3 text-primary">Student IMCA | Web Developer & Designer | Software Developer</h4>
+                    <p class="lead mb-4">I am an MSc IMCA student passionate about web development using HTML, CSS, and Bootstrap. I enjoy building simple, responsive websites and improving my technical skills to create impactful digital solutions.</p>
+                    <div class="mt-4">
+                        <a href="#education" class="btn btn-primary btn-lg me-3">
+                            <i class="bi bi-mortarboard-fill me-2"></i>View Education
+                        </a>
+                        <a href="#contact" class="btn btn-outline-primary btn-lg">
+                            <i class="bi bi-envelope-fill me-2"></i>Contact Me
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="p-5">
+        <div class="container">
+            <h2 class="section-title">Educational Details</h2>
+            <p class="lead mb-4 text-center">My academic journey in Mathematics and Computer Applications</p>
+            
+            <!-- Education Table -->
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead class="table-primary">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Qualification</th>
+                            <th scope="col">Institution</th>
+                            <th scope="col">Board/University</th>
+                            <th scope="col">Percentage/CGPA</th>
+                            <th scope="col">Year</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>10th Grade</td>
+                            <td>S.C.S.V. Murti</td>
+                            <td>State Board</td>
+                            <td><span class="badge bg-success">75%</span></td>
+                            <td>2019</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>12th Grade (Science)</td>
+                            <td>SVS Junior College, Someshwarnagar</td>
+                            <td>State Board</td>
+                            <td><span class="badge bg-success">78%</span></td>
+                            <td>2021</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Bachelor of Science (Mathematics)</td>
+                            <td>V.P. College, Baramati</td>
+                            <td>Savitribai Phule University, Pune</td>
+                            <td><span class="badge bg-success">8.5/10 CGPA</span></td>
+                            <td>2024</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>MSc Industrial Mathematics with Computer Application</td>
+                            <td>Nowrosjee Wadia College, Pune</td>
+                            <td>Savitribai Phule University, Pune</td>
+                            <td>pursuing</span></td>
+                            <td>2025</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="p-5">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <p class="lead mb-4 text-center">Technologies and tools I work with</p>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h4 class="card-title text-primary mb-4"><i class="bi bi-code-slash me-2"></i>Web Technologies</h4>
+                            <ul class="list-group mb-4">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <i class="bi bi-filetype-html text-danger me-2"></i>HTML5
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill">Advanced</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <i class="bi bi-filetype-css text-primary me-2"></i>CSS3 & Bootstrap
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill">Advanced</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <i class="bi bi-filetype-js text-warning me-2"></i>JavaScript
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill">Intermediate</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <i class="bi bi-lightning-charge text-info me-2"></i>React.js
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill">Beginner</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h4 class="card-title text-primary mb-4"><i class="bi bi-tools me-2"></i>Other Skills</h4>
+                            <ul class="list-group">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <i class="bi bi-git text-danger me-2"></i>Git & GitHub
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill">Intermediate</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <i class="bi bi-database text-success me-2"></i>SQL
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill">Intermediate</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <i class="bi bi-file-binary text-secondary me-2"></i>C Programming
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill">Intermediate</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <i class="bi bi-file-code text-info me-2"></i>Python
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill">Intermediate</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="p-5">
+        <div class="container">
+            <h2 class="section-title">Contact Information</h2>
+            <p class="lead mb-4 text-center">Get in touch with me</p>
+            
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <div class="mb-3">
+                                        <i class="bi bi-envelope-fill text-primary" style="font-size: 3rem;"></i>
+                                    </div>
+                                    <h5 class="card-title">Email</h5>
+                                    <p class="card-text">rohangadade24@gmail.com</p>
+                                    <a href="mailto:rohangadade24@gmail.com" class="btn btn-outline-primary mt-2">Send Email</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <div class="mb-3">
+                                        <i class="bi bi-github text-dark" style="font-size: 3rem;"></i>
+                                    </div>
+                                    <h5 class="card-title">GitHub</h5>
+                                    <p class="card-text">github.com/rohangadade2-4</p>
+                                    <a href="https://github.com/rohangadade2-4" target="_blank" class="btn btn-outline-dark mt-2">Visit Profile</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-white text-center p-4 mt-5">
+        <div class="container">
+            <h5 class="mb-3">Rohan Gadade</h5>
+            <p class="mb-3">MSc IMCA Student | Web Developer | Software Developer</p>
+            <p>&copy; 2026 My Personal Portfolio. Built with Bootstrap 5 & CSS3.</p>
+            <p class="mb-0">This website demonstrates responsive design using Bootstrap's grid system and components.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add active class to navbar items on scroll
+        window.addEventListener('scroll', function() {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            const navHeight = 80;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - navHeight)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
