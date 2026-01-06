@@ -195,6 +195,43 @@
             background: linear-gradient(90deg, #ff6b35, #0d6efd);
         }
         
+        /* Projects Section */
+        .projects {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            border-radius: 12px;
+        }
+        .projects-grid {
+            display: grid;
+            gap: 1.25rem;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            margin-top: 1.25rem;
+        }
+        .project-card { 
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .project-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+        .project-card .card-body { padding: 1rem; }
+        .project-tags span {
+            display:inline-block;
+            background:#eef6ff;
+            color:#0d6efd;
+            padding:.25rem .5rem;
+            margin-right:.4rem;
+            margin-top:.35rem;
+            border-radius:6px;
+            font-size:.85rem;
+        }
+        .project-links a { margin-right:.6rem; font-weight:600; }
+        .project-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
+        
         /* Responsive Design */
         @media (max-width: 768px) {
             .profile-img {
@@ -269,6 +306,9 @@
                         <a class="nav-link" href="#skills">Skills</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#contact">Contact</a>
                     </li>
                 </ul>
@@ -282,7 +322,7 @@
             <div class="row align-items-center">
                 <div class="col-md-4">
                     <!-- Profile Photo -->
-                    <img src="image.jpeg" 
+                    <img src="/images/image.jpeg" 
                          alt="Profile Photo" class="profile-img rounded-circle">
                 </div>
                 <div class="col-md-8">
@@ -431,6 +471,45 @@
                                 </li>
                             </ul>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="p-5">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <p class="lead mb-4 text-center">Selected projects I built</p>
+            <div class="projects-grid">
+                <div class="card project-card">
+                    <img src="/images/tgbot.png" alt="Poll & Survey Bot">
+                    <div class="card-body">
+                        <h5 class="card-title">Poll & Survey Telegram Bot</h5>
+                        <p class="card-text">Telegram bot to create polls & surveys, collect responses, and export results.</p>
+                        <p class="project-tags"><span>Python</span><span>Telegram Bot</span><span>Heroku</span></p>
+                        <p class="project-links mt-2"><a href="https://github.com/rohan2-4/Poll-and-Survey-bot.git" target="_blank" class="link-primary">Repo</a></p>
+                    </div>
+                </div>
+
+                <div class="card project-card">
+                    <img src="/images/campuslinker.png" alt="CampusLinke">
+                    <div class="card-body">
+                        <h5 class="card-title">CampusLinke</h5>
+                        <p class="card-text">College admin app for admissions, exams, and social activity fees management.</p>
+                        <p class="project-tags"><span>Flask</span><span>MySQL</span><span>Bootstrap</span></p>
+                        <p class="project-links mt-2"><a href="#" target="_blank" class="link-primary">Demo</a> <a href="https://github.com/rohan2-4/CampusLinker.git" target="_blank" class="link-primary">Repo</a></p>
+                    </div>
+                </div>
+
+                <div class="card project-card">
+                    <img src="/images/myportfolio.png" alt="Portfolio">
+                    <div class="card-body">
+                        <h5 class="card-title">Portfolio Website</h5>
+                        <p class="card-text">This portfolio website showcasing my projects, skills, and contact options.</p>
+                        <p class="project-tags"><span>HTML</span><span>CSS</span><span>Bootstrap</span></p>
+                        <p class="project-links mt-2"><a href="https://github.com/rohan2-4/my-personal-html-website.git" target="_blank" class="link-primary">View</a></p>
                     </div>
                 </div>
             </div>
